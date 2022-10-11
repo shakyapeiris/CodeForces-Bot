@@ -118,6 +118,10 @@ client.on('messageCreate', (message) => {
 					.send(
 						`<@${message.author.id}> solved todays daily coding problem`
 					);
+			default:
+				client.channels.cache
+					.get(message.channelId)
+					.send('Invalid Command');
 		}
 	}
 });
