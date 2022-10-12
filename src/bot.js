@@ -9,7 +9,7 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 
-const launchDate = new Date('2022-10-12T07:15:00').getTime();
+const launchDate = new Date('2022-10-12T07:30:00').getTime();
 const currentDate = new Date(
 	new Date().toLocaleString('en-US', {
 		timeZone: 'Asia/Kolkata',
