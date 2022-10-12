@@ -8,7 +8,7 @@ const {
 	EmbedBuilder,
 } = require('discord.js');
 
-const launchDate = new Date('2022-10-12T07:00:00').getTime();
+const launchDate = new Date('2022-10-12T07:30:00').getTime();
 const currentDate = new Date().getTime();
 const interval = 86400000;
 
@@ -96,6 +96,7 @@ const getQuestion = (delay) => {
 
 client.on('ready', async () => {
 	console.log(`${client.user.tag} has logged in...`);
+	console.log(launchDate - currentDate);
 	setTimeout(() => {
 		console.log('Bot launched successfully!');
 		getQuestion(interval);
@@ -104,7 +105,7 @@ client.on('ready', async () => {
 
 client.on('messageCreate', (message) => {
 	if (message.author.bot) return;
-	console.log(message);
+
 	if (message.content.startsWith('!')) {
 		const messageBody = message.content.substring(
 			1,
