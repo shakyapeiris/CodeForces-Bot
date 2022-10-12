@@ -9,7 +9,11 @@ const {
 } = require('discord.js');
 
 const launchDate = new Date('2022-10-12T07:30:00').getTime();
-const currentDate = new Date().getTime();
+const currentDate = new Date(
+	new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Kolkata',
+	})
+).getTime();
 const interval = 86400000;
 
 const intents = new IntentsBitField();
