@@ -8,6 +8,7 @@ const {
 	EmbedBuilder,
 } = require('discord.js');
 const fs = require('fs');
+const path = require('path');
 
 const launchDate = new Date('2022-10-12T07:30:00').getTime();
 const currentDate = new Date(
@@ -16,6 +17,9 @@ const currentDate = new Date(
 	})
 ).getTime();
 const interval = 86400000;
+
+const trackerPath = path.join(__dirname, 'tracker.json');
+console.log(trackerPath);
 
 const intents = new IntentsBitField();
 intents.add(
@@ -26,20 +30,13 @@ intents.add(
 	IntentsBitField.Flags.MessageContent
 );
 
-const webhookClient = new WebhookClient({
-	id: process.env.WEBHOOK_CLIENT_ID,
-	token: process.env.WEBHOOK_CLIENT_TOKEN,
-});
-
 const client = new Client({ intents: intents });
-
-const tracker = [];
 
 const getProblem = (problemArr) => {
 	return new Promise((resolve, reject) => {
 		const randomNum = Math.round(Math.random() * problemArr.length);
 		const index = problemArr.length % randomNum;
-		fs.readFile('src/tracker.json', (err, data) => {
+		fs.readFile(trackerPath, (err, data) => {
 			if (err) reject(err);
 			console.log(data);
 			const body = JSON.parse(data);
@@ -48,7 +45,7 @@ const getProblem = (problemArr) => {
 			}
 			console.log(index);
 			body.tracker.push(index);
-			fs.writeFile('src/tracker.json', JSON.stringify(body), (err) => {
+			fs.writeFile(trackerPath, JSON.stringify(body), (err) => {
 				if (err) reject(err);
 				resolve(problemArr[index]);
 			});
