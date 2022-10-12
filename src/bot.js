@@ -10,7 +10,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 
-const launchDate = new Date('2022-10-12T07:30:00').getTime();
+let launchDate = new Date('2022-10-12T07:30:00').getTime();
 const currentDate = new Date(
 	new Date().toLocaleString('en-US', {
 		timeZone: 'Asia/Kolkata',
@@ -104,6 +104,12 @@ const getQuestion = (delay) => {
 
 client.on('ready', async () => {
 	console.log(`${client.user.tag} has logged in...`);
+	if (launchDate < currentDate) {
+		const temp = new Date(launchDate);
+		launchDate = new Date(temp.toLocaleString());
+		launchDate.setDate(launchDate.getDate() + 1);
+		launchDate = launchDate.getTime();
+	}
 	console.log(launchDate - currentDate);
 	setTimeout(() => {
 		console.log('Bot launched successfully!');
