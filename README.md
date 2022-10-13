@@ -10,8 +10,8 @@ Follow the following steps to make a clone of this bot.
 
 Clone this repository from github using the follwind command.
 
-> git clone https://github.com/shakyapeiris/CodeForces-Bot.git
+`git clone https://github.com/shakyapeiris/CodeForces-Bot.git`
 
 ### 2. Initialize project
 
-> bash init.bash
+`bash init.bash`
