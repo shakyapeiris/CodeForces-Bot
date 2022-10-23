@@ -10,7 +10,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 
-let launchDate = new Date('2022-10-12T07:30:00').getTime();
+let launchDate = new Date('2022-10-23T07:45:00').getTime();
 const currentDate = new Date(
 	new Date().toLocaleString('en-US', {
 		timeZone: 'Asia/Kolkata',
@@ -105,11 +105,13 @@ const getQuestion = (delay) => {
 client.on('ready', async () => {
 	console.log(`${client.user.tag} has logged in...`);
 	if (launchDate < currentDate) {
+		console.log('Triggered');
 		const temp = new Date(launchDate);
 		launchDate = new Date(temp.toLocaleString());
 		launchDate.setDate(launchDate.getDate() + 1);
 		launchDate = launchDate.getTime();
 	}
+	console.log(new Date(launchDate).toLocaleString());
 	console.log(launchDate - currentDate);
 	setTimeout(() => {
 		console.log('Bot launched successfully!');
@@ -120,7 +122,7 @@ client.on('ready', async () => {
 client.on('messageCreate', (message) => {
 	if (message.author.bot) return;
 
-	if (message.content.startsWith('!')) {
+	if (message.content.startsWith('$')) {
 		const messageBody = message.content.substring(
 			1,
 			message.content.length
@@ -133,6 +135,7 @@ client.on('messageCreate', (message) => {
 					.send(
 						`<@${message.author.id}> solved todays daily coding problem`
 					);
+				break;
 			default:
 				client.channels.cache
 					.get(message.channelId)
