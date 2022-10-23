@@ -10,7 +10,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 
-let launchDate = new Date('2022-10-23T07:45:00').getTime();
+let launchDate = new Date('2022-10-23T07:50:00').getTime();
 const currentDate = new Date(
 	new Date().toLocaleString('en-US', {
 		timeZone: 'Asia/Kolkata',
